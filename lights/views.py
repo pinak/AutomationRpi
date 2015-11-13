@@ -3,11 +3,12 @@ import RPi.GPIO as GPIO
 from django.http import HttpResponse
 
 def toggle(request):
-    GPIO.setmode(GPIO.BCM)
-    GPIO.setup(17, GPIO.OUT)
-
     mode = request.GET['mode']
     pin = int(request.GET['pin'])
+
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(pin, GPIO.OUT)
+
     #TODO: add some validations to check if pin is valid
 
     if mode == 'on':
